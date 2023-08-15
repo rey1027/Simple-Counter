@@ -3,22 +3,25 @@ import { AiOutlineClockCircle} from "react-icons/ai";
 
 // include your styles into the webpack bundle
 import "../../styles/index.css";
-
 const SecondsCounter = (props) => {
+    const totalSeconds = props.counter;
+
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+    const seconds = totalSeconds % 60;
+
     return (
-        <>
         <div className="bigCounter">
             <div className="logo">
-             <AiOutlineClockCircle />
+                <AiOutlineClockCircle />
             </div>
-            <div className="seconds six">{props.digitSix%10}</div>
-            <div className="seconds five">{props.digitFive%10}</div>
-            <div className="seconds four">{props.digitFour%10}</div>
-            <div className="seconds three">{props.digitThree%10}</div>
-            <div className="seconds two">{props.digitTwo%10}</div>
-            <div className="seconds one">{props.digitOne%10}</div>
-        </div>  
-        </>
+            <div className="seconds six">{Math.floor(hours / 10)}</div>
+            <div className="seconds five">{hours % 10}</div>
+            <div className="seconds four">{Math.floor(minutes / 10)}</div>
+            <div className="seconds three">{minutes % 10}</div>
+            <div className="seconds two">{Math.floor(seconds / 10)}</div>
+            <div className="seconds one">{seconds % 10}</div>
+        </div>
     );
 };
 
